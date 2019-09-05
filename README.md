@@ -6,7 +6,7 @@
 These are RESTful APIs created based on raml specification. The APIs was designed and tested with H2 in-memory database.
 You can find the detail sppecification written in RAML files at src/main/api.
 
-NOTE : Please be aware that the work of the project is not corresponds 100% to the specification in Raml files. There is a few features of the API will be implemented on an intergration platform ( Mulesoft's Anypoints Platform in my case). Detail in Usage. 
+NOTE : Please be aware that the work of the project is not corresponds 100% to the specification in Raml files. There is a few features of the API will be implemented on an intergration platform ( Mulesoft ESB in my case). Detail in Usage. 
 
 ## Built with
 This application was built using :
