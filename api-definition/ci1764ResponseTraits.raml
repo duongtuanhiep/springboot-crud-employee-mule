@@ -1,0 +1,67 @@
+#%RAML 1.0 Library
+usage: |
+  This Library provides response states as traits.
+types:
+  ErrorResponse:
+    description: |
+      This object is a standardized error response. It *can* be returned for all 4xx and 5xx errors, but is the mandatory
+      response for an internal server error (500) - see "error500Responder" below.
+
+      Through the status the server specifies what has gone wrong.
+      The encryptedInformation field contains technical details (e.g. object states, session details, etc.). Because of these
+      sensitive information the technical details must be encrypted (OWASP standard rules).
+
+      For an internal server error (status code: 500) all fields will be filled with default values:
+      * status: "500"
+      * encryptedInformation: Contains one element which is the stacktrace of the uncatched exception.
+    properties:
+      status: string
+      encryptedInformation: string
+    example: |
+      {
+        "status": "400",
+        "encryptedInformation": "DfllLle9rxl+d002fNhrFTVvoZzWLOP1t/gxpmdnehFgHySJQN4yEn4j1RYstjELym1Wa7j39A+M1VSnLWC54v3i3ARf45S65QP/nSTQLtKy/04Ql7n/7nfa5Tj/0g5G9gpc3MfPKS9i1bMA4+KJAFrh/JDCt9Yj9zGxLaVSiaWnDPsehllxj/utdnO1HAV7768NK+j04Q3kI68RI/NC8ZfOqMbkbB5BtcwAtYQcJBa7+qzhDKT701nU0mbn1YXWtFToDgTuclahylzm2U4KlgWqHh/KjTB3HLWGNk2qKLhJSVGodQQ71XX6hXw7igjqt6YSF22r5wBMn96q/kMxDouI9SjGyqaRe/seFOyjxnJOm8hm9dZQHWQ7gCXjN8z7"
+      }
+
+traits:
+  itemResponder:
+    description: For endpoints. Should be used whenever a single <<item>> is returned with status 200.
+    is: [ error500Responder ]
+    responses:
+      200:
+        body: 
+          application/json:
+            type: <<item>>
+      404:
+        description: Returned when the item with the given ID cannot be found.
+        body:
+          application/json:
+            type: ErrorResponse
+  itemCreationResponder:
+    description: For endpoints. Should be used whenever a new <<item>> is created by a POST method and status 201 is returned.
+    is: [ error500Responder ]
+    responses:
+      201:
+        body:
+          application/json:
+            type: <<item>>
+      400:
+        description: Returned when the given resource has an id and that id is already associated with an resource.
+        body:
+          application/json:
+            type: <<item>>
+  itemListResponder:
+    description: For endpoints. Defines that an endpoint returns a list of <<item>>.
+    is: [ error500Responder ]
+    responses:
+      200:
+        body:
+          application/json:
+            type: <<item>>[]
+  error500Responder:
+    description: Must be used on any endpoint ever described. This is mandatory.
+    responses:
+      500:
+        body:
+          application/json:
+            type: ErrorResponse
