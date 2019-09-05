@@ -40,7 +40,7 @@ password :
 NOTE : password is empty 
 ```
 
-List of features and traits that are different/not implemented in this maven project : 
+List of features and traits that are different/not implemented in this project : 
 - ci1764-traits.paged : The parameter <pageBy> follows the pattern "<pageNumber>,<pageSize>". In the project this 1 parameters is separated into 2 parameters : pageNumber and pageSize. 
 - ci1764-traits.timedQueryable : not implemented. 
 - ci1764ResponseTraits.ErrorResponse : not implemented. 
