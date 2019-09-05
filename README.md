@@ -16,6 +16,7 @@ This application was built using :
 - [Spring web mvc](https://docs.spring.io/spring/docs/current/spring-framework-reference/web.html)
 - [Hibernate](https://hibernate.org/)
 - [Maven](https://maven.apache.org/)
+- [devtool](https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html)
 
 ## Installation 
 
