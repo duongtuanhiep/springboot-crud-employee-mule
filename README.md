@@ -30,12 +30,21 @@ More info on modifying "application.properties" :
 https://www.tutorialspoint.com/spring_boot/spring_boot_application_properties.htm
 
 If you wish to use the H2 database and inspect the data, you can also access H2 console to inspect or modify the tables through :
-'''
+```
 http://localhost:{Running-Port}/h2-console/
-'''
+```
 The username and password can be modified using "application.properties". By default, it is : 
-'''
+```
 username : sa
 password :
 NOTE : password is empty 
-'''
+```
+
+List of features and traits that are different/not implemented in this maven project : 
+- ci1764-traits.paged : The parameter <pageBy> follows the pattern "<pageNumber>,<pageSize>". In the project this 1 parameters is separated into 2 parameters : pageNumber and pageSize. 
+- ci1764-traits.timedQueryable : not implemented. 
+- ci1764ResponseTraits.ErrorResponse : not implemented. 
+
+## Contributing & author
+
+Duong Tuan Hiep - Duongtuanhiep18398@gmail.com
